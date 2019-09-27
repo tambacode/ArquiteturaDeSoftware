@@ -8,6 +8,10 @@ public class FTUtil {
 		input = new Scanner(System.in);
 	}
 	
+	public static void PrintEmptyText() {
+		System.out.println("");
+	}
+	
 	public static void Print(Integer text) {
 		System.out.println(text);
 	}
@@ -19,10 +23,16 @@ public class FTUtil {
 	public static void PrintErro() {
 		Print("Erro ao captar caractere, tente novamente!");
 	}
+	/*
+	public static void RequestEnterToContinue() {
+		Print("Enter to continue...");
+		input.next();
+	}
+	*/
 	
 	public static int RequestInt(String text) {
 		Init();		
-		Print(text);
+		System.out.print(text);
 		
 		try {
 			return input.nextInt();
@@ -34,7 +44,7 @@ public class FTUtil {
 	
 	public static String RequestString(String text) {
 		Init();		
-		Print(text);
+		System.out.print(text);
 		
 		try {
 			return input.next();
