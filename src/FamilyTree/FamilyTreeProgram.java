@@ -10,7 +10,7 @@ public class FamilyTreeProgram {
 	
 	public void DoProgramLoop() {
 		menu.InitFamily();
-		//AddRandomChildren();
+		AddRandomChildren();
 		
 		while(true) {
 			menu.DisplayMainMenu();	
@@ -26,7 +26,7 @@ public class FamilyTreeProgram {
 		Man m3 = new Man("Jake");
 		
 		Family.addChild(m1);
-		Family.addChild(w2);
+		Family.addChild(w1);
 		m1.addChild(m2);
 		m1.addChild(w2);
 		m1.addChild(m3);

@@ -18,12 +18,21 @@ public abstract class FamilyMember {
 		return Children;
 	}	 
 	
-	public void addChild(FamilyMember person) {
-		Children.add(person);
+	public void addChild(FamilyMember member) {
+		Children.add(member);
 	}
 	
-	public void removeChild(FamilyMember person) {
-		Children.remove(person);
+	public void removeChild(FamilyMember member) {
+		if (Children.contains(member)) {
+			Children.remove(member);
+			member = null;
+			
+			return;
+		}
+		
+		for (FamilyMember person : Children) {
+			person.removeChild(member);
+		}
 	}
 	
 	public void displayChildren(Integer generation) {
@@ -39,7 +48,7 @@ public abstract class FamilyMember {
 		}
 	}
 	
-	private void ClearChildrenNullRefs() {
+	public void ClearChildrenNullRefs() {
 		Object[] c = Children.toArray();
 		for (int i = c.length-1; i >= 0; i--) {
 			if (c[i] == null) {
@@ -48,8 +57,8 @@ public abstract class FamilyMember {
 		}
 	}
 	
-	public FamilyMember RequestFamilyMember() {
-		String familyMemberName = FTUtil.RequestString("Digite o nome do membro a ser procurado: ");
+	public FamilyMember RequestFamilyMember(String text) {
+		String familyMemberName = FTUtil.RequestString(text);
 		
 		FamilyMember memberFound = SearchFamilyMember(familyMemberName);
 		
@@ -57,7 +66,7 @@ public abstract class FamilyMember {
 			Boolean answer = FTUtil.RequestOption("Nenhum membro encontrado com esse nome, Deseja tentar novamente? (S ou N)", "S", "N");
 			
 			if (answer) {
-				memberFound = RequestFamilyMember();
+				memberFound = RequestFamilyMember(text);
 			} else {
 				return null;
 			}
@@ -72,11 +81,12 @@ public abstract class FamilyMember {
 		for (FamilyMember person : Children) {
 			if (memberFound != null)
 			{
-				return person;
+				break;
 			}
 			
 			if (person.Name.toLowerCase().equals(familyMemberName.toLowerCase())) {
-				return person;
+				memberFound = person;
+				break;
 			} else {
 				memberFound = person.SearchFamilyMember(familyMemberName);	
 			}

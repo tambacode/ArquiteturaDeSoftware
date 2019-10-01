@@ -6,7 +6,6 @@ public class AddMemberMenu extends BaseMenu {
 	}
 	
 	public void DisplayAddMemberOption() {
-		FTUtil.PrintEmptyText();
 		Boolean answer = FTUtil.RequestOption("Digite o genero do novo membro (F ou M): ", "M", "F");
 		String name = FTUtil.RequestString("Digite o nome do novo membro: ");
 		FamilyMember memberAdded;
@@ -25,7 +24,7 @@ public class AddMemberMenu extends BaseMenu {
 		Boolean answer = FTUtil.RequestOption("Adicionar esse membro como filho de outro antecedente? (S ou N): ", "S", "N");
 		
 		if (answer) {
-			FamilyMember parent = GetFamily().RequestFamilyMember();
+			FamilyMember parent = GetFamily().RequestFamilyMember("Digite o nome do membro a ser procurado: ");
 			
 			if (parent != null) {
 				parent.addChild(familyMember);

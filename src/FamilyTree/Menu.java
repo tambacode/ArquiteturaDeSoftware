@@ -2,10 +2,12 @@ package FamilyTree;
 
 public class Menu extends BaseMenu {
 	private AddMemberMenu AddMemberMenu;
+	private RemoveMemberMenu RemoveMemberMenu;
 	
 	public Menu(FamilyTreeProgram familyTreeProgram) {
 		super(familyTreeProgram);
 		AddMemberMenu = new AddMemberMenu(familyTreeProgram);
+		RemoveMemberMenu = new RemoveMemberMenu(familyTreeProgram);
 	}
 	
 	public void DisplayMainMenu() {
@@ -32,6 +34,10 @@ public class Menu extends BaseMenu {
 		case 2:
 			FTUtil.PrintEmptyText();
 			AddMemberMenu.DisplayAddMemberOption();
+			break;
+		case 3:
+			FTUtil.PrintEmptyText();
+			RemoveMemberMenu.DisplayRemoveMemberOption();
 			break;
 		case 8:
 			InitFamily();
