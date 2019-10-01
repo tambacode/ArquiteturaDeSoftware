@@ -26,15 +26,65 @@ public abstract class FamilyMember {
 		Children.remove(person);
 	}
 	
-	public void displayChildren() {
-		if (Children.size() > 0 ) {
-			FTUtil.Print(getName() + " e estes são meus decendentes");	
-		} else {
-			FTUtil.Print(getName() + " e não tenho decendentes");
-		}
+	public void displayChildren(Integer generation) {
+		ClearChildrenNullRefs();
+		FTUtil.PrintTab(generation);
+		FTUtil.Print(getName());
 				
 		for (FamilyMember person : Children) {
-			displayChildren();
+			if (person == null) {
+				
+			}
+			person.displayChildren(generation + 1);
 		}
+	}
+	
+	private void ClearChildrenNullRefs() {
+		Object[] c = Children.toArray();
+		for (int i = c.length-1; i >= 0; i--) {
+			if (c[i] == null) {
+				Children.remove(i);
+			}
+		}
+	}
+	
+	public FamilyMember RequestFamilyMember() {
+		String familyMemberName = FTUtil.RequestString("Digite o nome do membro a ser procurado: ");
+		
+		FamilyMember memberFound = SearchFamilyMember(familyMemberName);
+		
+		if (memberFound == null || memberFound.getName() == "") {
+			Boolean answer = FTUtil.RequestOption("Nenhum membro encontrado com esse nome, Deseja tentar novamente? (S ou N)", "S", "N");
+			
+			if (answer) {
+				memberFound = RequestFamilyMember();
+			} else {
+				return null;
+			}
+		}
+		
+		return memberFound;
+	}
+	
+	public FamilyMember SearchFamilyMember(String familyMemberName) {
+		FamilyMember memberFound = null;
+		
+		for (FamilyMember person : Children) {
+			if (memberFound != null)
+			{
+				return person;
+			}
+			
+			FTUtil.Print(person.Name.toLowerCase());
+			FTUtil.Print(familyMemberName.toLowerCase());
+			
+			if (person.Name.toLowerCase().equals(familyMemberName.toLowerCase())) {
+				return person;
+			} else {
+				memberFound = person.SearchFamilyMember(familyMemberName);	
+			}
+		}
+		
+		return memberFound;
 	}
 }

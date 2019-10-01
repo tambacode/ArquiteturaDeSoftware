@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class FTUtil {
 	static Scanner input;
+	static Integer printPadding = 5; 
 	
 	public static void Init() {
 		input = new Scanner(System.in);
@@ -21,14 +22,17 @@ public class FTUtil {
 	}
 	
 	public static void PrintErro() {
-		Print("Erro ao captar caractere, tente novamente!");
+		Print("Erro ao captar caracteres, tente novamente!");
 	}
-	/*
-	public static void RequestEnterToContinue() {
-		Print("Enter to continue...");
-		input.next();
+
+	public static void PrintTab(Integer qtdPadding) {
+		Integer i = 0;
+		
+		while((i+printPadding) < qtdPadding * printPadding) {
+			System.out.print("-");
+			i++;
+		}
 	}
-	*/
 	
 	public static int RequestInt(String text) {
 		Init();		
@@ -53,4 +57,25 @@ public class FTUtil {
 			return RequestString(text);
 		}
 	}	
+	
+	public static Boolean RequestOption(String text, String op1, String op2) {
+		Init();		
+		System.out.print(text);
+		
+		try {
+			String v = input.next();
+			
+			if (v.toLowerCase().equals(op1.toLowerCase())) {
+				return true;
+			} else if (v.toLowerCase().equals(op2.toLowerCase())) {
+				return false;	
+			}  else {
+				PrintErro();
+				return RequestOption(text, op1, op2);
+			}
+		} catch (Exception e) {
+			PrintErro();
+			return RequestOption(text, op1, op2);
+		}
+	}
 }
