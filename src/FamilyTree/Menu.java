@@ -43,7 +43,6 @@ public class Menu extends BaseMenu {
 			InitFamily();
 			break;
 		case 9:
-			FTUtil.Print(value);
 			EndProgram();
 			break;
 		default:
