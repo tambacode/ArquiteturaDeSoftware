@@ -2,12 +2,14 @@ package FamilyTree;
 
 public class Menu extends BaseMenu {
 	private AddMemberMenu AddMemberMenu;
-	private RemoveMemberMenu RemoveMemberMenu;
+	private SetMemberAsChildMenu SetMemberAsChildMenu;
+	private DeleteMemberMenu RemoveMemberMenu;
 	
 	public Menu(FamilyTreeProgram familyTreeProgram) {
 		super(familyTreeProgram);
 		AddMemberMenu = new AddMemberMenu(familyTreeProgram);
-		RemoveMemberMenu = new RemoveMemberMenu(familyTreeProgram);
+		SetMemberAsChildMenu = new SetMemberAsChildMenu(familyTreeProgram);
+		RemoveMemberMenu = new DeleteMemberMenu(familyTreeProgram);
 	}
 	
 	public void DisplayMainMenu() {
@@ -15,8 +17,8 @@ public class Menu extends BaseMenu {
 		FTUtil.Print("Menu principal:");
 		FTUtil.Print("1 - Visualizar a familia.");
 		FTUtil.Print("2 - Adicionar um membro da familia.");
-		FTUtil.Print("3 - Remover um membro da familia.");
-		FTUtil.Print("4 - Adicionar um membro da familia, como filho de outro.");
+		FTUtil.Print("3 - Adicionar um membro da familia, como filho de outro.");
+		FTUtil.Print("4 - Remover um membro da familia.");
 		FTUtil.Print("8 - Apagar a familia atual, e iniciar uma nova.");
 		FTUtil.Print("9 - Para sair");
 		
@@ -36,6 +38,10 @@ public class Menu extends BaseMenu {
 			AddMemberMenu.DisplayAddMemberOption();
 			break;
 		case 3:
+			FTUtil.PrintEmptyText();
+			SetMemberAsChildMenu.DisplaySetMemberAsChildOption();
+			break;
+		case 4:
 			FTUtil.PrintEmptyText();
 			RemoveMemberMenu.DisplayRemoveMemberOption();
 			break;

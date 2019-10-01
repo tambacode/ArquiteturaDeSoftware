@@ -22,7 +22,7 @@ public abstract class FamilyMember {
 		Children.add(member);
 	}
 	
-	public void removeChild(FamilyMember member) {
+	public void deleteChild(FamilyMember member) {
 		if (Children.contains(member)) {
 			Children.remove(member);
 			member = null;
@@ -31,7 +31,13 @@ public abstract class FamilyMember {
 		}
 		
 		for (FamilyMember person : Children) {
-			person.removeChild(member);
+			person.deleteChild(member);
+		}
+	}
+	
+	public void removeChild(FamilyMember member) {
+		if (Children.contains(member)) {
+			Children.remove(member);
 		}
 	}
 	
