@@ -31,7 +31,7 @@ public class Menu extends BaseMenu {
 			break;
 		case 2:
 			FTUtil.PrintEmptyText();
-			AddMemberMenu.DisplayAddMemberMenu();
+			AddMemberMenu.DisplayAddMemberOption();
 			break;
 		case 8:
 			InitFamily();

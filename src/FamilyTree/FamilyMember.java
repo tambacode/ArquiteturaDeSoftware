@@ -75,9 +75,6 @@ public abstract class FamilyMember {
 				return person;
 			}
 			
-			FTUtil.Print(person.Name.toLowerCase());
-			FTUtil.Print(familyMemberName.toLowerCase());
-			
 			if (person.Name.toLowerCase().equals(familyMemberName.toLowerCase())) {
 				return person;
 			} else {

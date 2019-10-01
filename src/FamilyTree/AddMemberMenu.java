@@ -5,27 +5,7 @@ public class AddMemberMenu extends BaseMenu {
 		super(familyTreeProgram);
 	}
 	
-	public void DisplayAddMemberMenu() {
-		FTUtil.Print("Menu para adicionar membro da familia:");
-		FTUtil.Print("1 - Adicionar novo membro.");
-		FTUtil.Print("2 - Adicionar membro existente como filho de outro.");
-		FTUtil.Print("9 - Retornar");
-		
-		Integer selected = FTUtil.RequestInt("Escolha uma opção digitando um número: ");
-		
-		switch(selected)
-		{
-		case 1:
-			DisplayAddMemberOption();
-			break;
-		case 2:
-			FTUtil.PrintEmptyText();
-			GetFamily().displayChildren(1);
-			break;
-		}		
-	}
-	
-	private void DisplayAddMemberOption() {
+	public void DisplayAddMemberOption() {
 		FTUtil.PrintEmptyText();
 		Boolean answer = FTUtil.RequestOption("Digite o genero do novo membro (F ou M): ", "M", "F");
 		String name = FTUtil.RequestString("Digite o nome do novo membro: ");
@@ -48,16 +28,17 @@ public class AddMemberMenu extends BaseMenu {
 			FamilyMember parent = GetFamily().RequestFamilyMember();
 			
 			if (parent != null) {
-				FTUtil.Print(familyMember.getName());
 				parent.addChild(familyMember);
 
 				FTUtil.Print("Membro adicionado como filho com sucesso!");
 				AddMemberAsChild(familyMember, true);	
+				
+				alreadyAChild = true;
 			}
-		} else {
-			if (!alreadyAChild) {
-				GetFamily().addChild(familyMember);	
-			}
+		}
+		
+		if (!alreadyAChild) {
+			GetFamily().addChild(familyMember);	
 		}
 	}
 }
