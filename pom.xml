@@ -1,6 +1,6 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.mycompany.app</groupId>
+  <groupId>com.tambacode.app</groupId>
   <artifactId>my-app</artifactId>
   <version>1</version>
   <dependencies>
@@ -15,4 +15,7 @@
   		<version>20090211</version>
 	</dependency>
   </dependencies>
+  <name>Arvore Genealogica</name>
+  <url>http://fabricas.cesar.edu.br/tambacode/</url>
+  <description>Projeto para a disciplina de Arquitetura de Software</description>
 </project>
