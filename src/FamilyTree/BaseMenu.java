@@ -7,6 +7,8 @@ public class BaseMenu {
 		this.FamilyTreeProgram = familyTreeProgram;
 	}
 	
+	public void DisplayMenu() {}
+	
 	protected void EndProgram() {
 		FTUtil.PrintEmptyText();
 		FTUtil.Print("Programa finalizado!");

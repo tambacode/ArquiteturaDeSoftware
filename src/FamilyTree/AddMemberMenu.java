@@ -5,7 +5,8 @@ public class AddMemberMenu extends BaseMenu {
 		super(familyTreeProgram);
 	}
 	
-	public void DisplayAddMemberOption() {
+	@Override
+	public void DisplayMenu() {
 		Boolean answer = FTUtil.RequestOption("Digite o genero do novo membro (F ou M): ", "M", "F");
 		String name = FTUtil.RequestString("Digite o nome do novo membro: ");
 		FamilyMember memberAdded;

@@ -5,7 +5,8 @@ public class SetMemberAsChildMenu extends BaseMenu {
 		super(familyTreeProgram);
 	}
 	
-	public void DisplaySetMemberAsChildOption() {
+	@Override
+	public void DisplayMenu() {
 		FamilyMember member = GetFamily().RequestFamilyMember("Digite o nome do membro a ser adicionado como filho: ");
 		
 		if (member != null) {

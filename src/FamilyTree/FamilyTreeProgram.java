@@ -13,7 +13,7 @@ public class FamilyTreeProgram {
 		AddRandomChildren();
 		
 		while(true) {
-			menu.DisplayMainMenu();	
+			menu.DisplayMenu();	
 		}
 	}
 	

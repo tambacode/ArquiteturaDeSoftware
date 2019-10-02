@@ -5,7 +5,8 @@ public class DeleteMemberMenu extends BaseMenu {
 		super(familyTreeProgram);
 	}
 	
-	public void DisplayRemoveMemberOption() {
+	@Override
+	public void DisplayMenu() {
 		FamilyMember member = GetFamily().RequestFamilyMember("Digite o nome do membro a ser deletado: ");
 		
 		if (member != null) {

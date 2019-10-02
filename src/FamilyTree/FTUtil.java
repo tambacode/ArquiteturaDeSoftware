@@ -46,6 +46,25 @@ public class FTUtil {
 		}
 	}
 	
+	public static int RequestIntWithLimit(String text, Integer minValue, Integer maxValue) {
+		Init();		
+		System.out.print(text);
+		
+		try {
+			Integer v = input.nextInt();
+			
+			if (v >= minValue && v <= maxValue) {
+				return v;
+			} else {
+				PrintErro();
+				return RequestIntWithLimit(text, minValue, maxValue);
+			}
+		} catch (Exception e) {
+			PrintErro();
+			return RequestInt(text);
+		}
+	}
+	
 	public static String RequestString(String text) {
 		Init();		
 		System.out.print(text);
