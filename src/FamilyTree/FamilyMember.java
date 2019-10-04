@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public abstract class FamilyMember {
 	protected String Name;
+	protected String Gender;
 	protected ArrayList<FamilyMember> Children;
 	
 	public FamilyMember(String name) {
@@ -12,6 +13,10 @@ public abstract class FamilyMember {
 
 	public String getName() {
 		return this.Name;
+	}
+	
+	public String getGender() {
+		return this.Gender;
 	}
 	
 	public ArrayList<FamilyMember> getChildren() {

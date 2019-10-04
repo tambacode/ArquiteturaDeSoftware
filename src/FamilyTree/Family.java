@@ -4,6 +4,7 @@ public class Family extends FamilyMember {
 	
 	public Family(String name) {
 		super(name);
+		Gender = "Family";
 	}
 	
 	@Override

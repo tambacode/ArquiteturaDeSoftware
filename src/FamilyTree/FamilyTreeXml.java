@@ -16,7 +16,7 @@ public class FamilyTreeXml implements FamilyTreeAdapter {
 	}
 
 	@Override
-	public ArrayList<FamilyMember> Import(String file) {
+	public FamilyMember Import(String file) {
 		// TODO Auto-generated method stub
 		return null;
 	}

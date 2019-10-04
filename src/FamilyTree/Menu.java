@@ -8,6 +8,7 @@ public class Menu extends BaseMenu {
 	
 	public Menu(FamilyTreeProgram familyTreeProgram) {
 		super(familyTreeProgram);
+		
 		AddMemberMenu = new AddMemberMenu(familyTreeProgram);
 		SetMemberAsChildMenu = new SetMemberAsChildMenu(familyTreeProgram);
 		RemoveMemberMenu = new DeleteMemberMenu(familyTreeProgram);
@@ -37,6 +38,7 @@ public class Menu extends BaseMenu {
 		}
 		
 		String familyName = FTUtil.RequestString("Digite o nome da árvore genealógica: ");
+		//String familyName = "Johnson's";
 		SetFamily(new Family(familyName));
 		
 		FTUtil.Print("Familia criada com sucesso!");

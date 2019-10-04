@@ -15,7 +15,7 @@ public class FamilyTreeYaml implements FamilyTreeAdapter {
 	}
 
 	@Override
-	public ArrayList<FamilyMember> Import(String file) {
+	public FamilyMember Import(String file) {
 		FTUtil.Print("YAML Import called with sucess");
 		return null;
 	}

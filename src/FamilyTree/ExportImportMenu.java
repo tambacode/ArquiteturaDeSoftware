@@ -9,17 +9,18 @@ public class ExportImportMenu extends BaseMenu {
 	public void DisplayMenu() {
 		FTUtil.PrintEmptyText();
 		FTUtil.Print("Escolha uma opção:");
-		FTUtil.Print("1 - Exportar familia.");
-		FTUtil.Print("2 - Importar familia.");
+		FTUtil.Print("1 - Importar familia.");
+		FTUtil.Print("2 - Exportar familia.");
 		FTUtil.Print("3 - Retornar.");
 		
 		SelectMenuOption(FTUtil.RequestIntWithLimit(("Escolha uma opção: "), 1, 3));
+		//SelectMenuOption(1);
 	}
 	
 	private void SelectMenuOption(Integer value)
 	{
 		if (value < 3) {
-			DisplayFileTypeMenu(value == 1);
+			DisplayFileTypeMenu(value == 2);
 		}
 	}
 	
@@ -33,6 +34,7 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("5 - Retornar");
 		
 		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
+		//SelectFileTypeMenuOption(false, 1);
 	}
 	
 	private void SelectFileTypeMenuOption(Boolean export, Integer value)
@@ -64,15 +66,19 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.PrintEmptyText();
 		try {
 			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\arquivo.json'): ");
+			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\JsonPoc\\file.json";
 
 			if (export) {
 				familyAdapter.Export(file);
+				FTUtil.Print("Arquivo exportado com sucesso!");
 			} else {
-				familyAdapter.Import(file);
+				SetFamily(familyAdapter.Import(file));
+				FTUtil.Print("Arquivo importado com sucesso!");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			FTUtil.Print("Não foi possível executar a ação. Verifique o caminho do arquivo.");
-			DisplayFilePathMenu(export, familyAdapter);
+			//DisplayFilePathMenu(export, familyAdapter);
 		}
 	}
 }
