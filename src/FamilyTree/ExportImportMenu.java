@@ -14,7 +14,7 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("3 - Retornar.");
 		
 		SelectMenuOption(FTUtil.RequestIntWithLimit(("Escolha uma opção: "), 1, 3));
-		//SelectMenuOption(1);
+		//SelectMenuOption(2);
 	}
 	
 	private void SelectMenuOption(Integer value)
@@ -33,8 +33,8 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("4 - TOML");
 		FTUtil.Print("5 - Retornar");
 		
-		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
-		//SelectFileTypeMenuOption(false, 2);
+		//SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
+		SelectFileTypeMenuOption(false, 1);
 	}
 	
 	private void SelectFileTypeMenuOption(Boolean export, Integer value)
@@ -65,8 +65,8 @@ public class ExportImportMenu extends BaseMenu {
 	private void DisplayFilePathMenu(Boolean export, FamilyTreeAdapter familyAdapter) {
 		FTUtil.PrintEmptyText();
 		try {
-			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\arquivo.json'): ");
-			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\XmlPoc\\file.xml";
+			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\arquivo.(json|xml|yaml|toml)'): ");
+			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\XmlPoc\\file.json";
 
 			if (export) {
 				familyAdapter.Export(file);
@@ -78,7 +78,7 @@ public class ExportImportMenu extends BaseMenu {
 		} catch (Exception e) {
 			e.printStackTrace();
 			FTUtil.Print("Não foi possível executar a ação. Verifique o caminho do arquivo.");
-			//DisplayFilePathMenu(export, familyAdapter);
+			DisplayFilePathMenu(export, familyAdapter);
 		}
 	}
 }

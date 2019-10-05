@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +17,7 @@ import org.json.simple.parser.ParseException;
 
 public class FamilyTreeJson implements FamilyTreeAdapter {
 	private FamilyMember FamilyTree;
+	private int MemberIndex = 0;
 	
 	public FamilyTreeJson(FamilyMember familyMember) {
 		this.FamilyTree = familyMember;
@@ -23,6 +25,7 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 	
 	@Override
 	public void Export(String filePath) {
+		MemberIndex = 0;
 		JSONObject my_obj = new JSONObject();
 
 		try {
@@ -35,11 +38,14 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 	}
 	
 	private void ExportChildrenIterator(JSONObject my_obj, FamilyMember currentMember) throws JSONException {
-		String key = currentMember.Name;;
+		MemberIndex++;
+		String key = Integer.toString(MemberIndex);
+		
 		ArrayList<FamilyMember> children = currentMember.getChildren();
 		
 		my_obj.put(key, new JSONObject());
 		JSONObject selfObj = (JSONObject)my_obj.get(key);
+		selfObj.put("Name", currentMember.Name);
 		selfObj.put("Gender", currentMember.getGender());
 		
 		if (children.size() > 0) {
@@ -60,7 +66,6 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 		
 		try (FileReader reader = new FileReader(filePath)) {
 			Object file = parser.parse(reader);
-			//System.out.println(file.toString());
 			
 			JSONObject myObj = new JSONObject(file.toString());
 			
@@ -77,16 +82,15 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 		// Loop in all keys from the obj
 		Iterator<String> iterator = myObj.keys();
         while (iterator.hasNext()) {
-        	String name = iterator.next();
+        	String key = iterator.next();
         	FamilyMember childMember;
 
         	try {
         		// Get the member as an obj
-        		JSONObject currentObj = myObj.getJSONObject(name);        		
+        		JSONObject currentObj = myObj.getJSONObject(key);        		
         		
         		// Create a new member
-        		
-        		childMember = GetFamilyMember(FamilyTree, name, currentObj.getString("Gender"));
+        		childMember = GetFamilyMember(FamilyTree, currentObj.getString("Name"), currentObj.getString("Gender"));
         		
         		if (familyMember == null) {
         			// Init family

@@ -54,7 +54,7 @@ public class FamilyTreeXml implements FamilyTreeAdapter {
 		ArrayList<FamilyMember> children = currentMember.getChildren();
 		
 		// Create element
-		Element currentElement = doc.createElement("element");
+		Element currentElement = doc.createElement("Element");
 
 		// Set parent
 		if (element == null) {
@@ -105,20 +105,72 @@ public class FamilyTreeXml implements FamilyTreeAdapter {
 	}
 
 	private FamilyMember ImportChildrenIterator(NodeList myObj, FamilyMember familyMember) {
-		/*
 		for (int i = 0; i < myObj.getLength(); i++) {
-	    	Node tempNode = myObj.item(i);
+			Node currentNode = myObj.item(i);
 	    	
-	    	if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+	    	if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+	    		// Create a new member
+	    		String name = "";
+	    		FamilyMember childMember = null;
 	    		
+	    		NodeList children = currentNode.getChildNodes();
+	    		for (int j = 0; j < children.getLength(); j++) {
+	    			Node node = children.item(j);
+	    			switch (node.getNodeName()) {
+					case "Name":
+						name = node.getTextContent();
+						break;
+					case "Gender":
+						childMember = GetFamilyMember(FamilyTree, name, node.getTextContent());
+						
+						if (familyMember == null) {
+		        			/* Init family */
+		        			familyMember = childMember;
+		        			// Add initial object to the tree so we can search for duplicate children
+		        			FamilyTree = familyMember;
+		        		} else {
+		        			// Add a member as another one child
+		                	familyMember.addChild(childMember);
+		        		}
+						break;
+					case "Children":
+						ImportChildrenIterator(node.getChildNodes(), childMember);
+						break;
+					}
+	    		}
 	    	}
 		}
-		*/
 		
 		return familyMember;
 	}
 	
+	private FamilyMember GetFamilyMember(FamilyMember familyTree, String memberName, String memberGender) {
+		FamilyMember foundFamilyMember = null;
+		
+		if (familyTree != null) {
+			foundFamilyMember = familyTree.SearchFamilyMember(memberName);	
+		}
+
+		// If member was found on the tree return it
+		if (foundFamilyMember != null) {
+			return foundFamilyMember;
+		} else {
+			return GetNewFamilyMemberByGender(null, memberName, memberGender);
+		}
+	}
 	
+	private FamilyMember GetNewFamilyMemberByGender(FamilyMember familyMember, String name, String gender) {
+		switch (gender) {
+			case "Family":
+				return new Family(name);
+			case "Man":
+				return new Man(name);
+			case "Woman":
+				return new Woman(name);
+		}
+		
+		return new Woman(name);		
+	}
 	
 	
 	
