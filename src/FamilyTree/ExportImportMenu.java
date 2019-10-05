@@ -34,7 +34,7 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("5 - Retornar");
 		
 		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
-		//SelectFileTypeMenuOption(false, 1);
+		//SelectFileTypeMenuOption(false, 2);
 	}
 	
 	private void SelectFileTypeMenuOption(Boolean export, Integer value)
@@ -66,7 +66,7 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.PrintEmptyText();
 		try {
 			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\arquivo.json'): ");
-			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\JsonPoc\\file.json";
+			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\XmlPoc\\file.xml";
 
 			if (export) {
 				familyAdapter.Export(file);

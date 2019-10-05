@@ -22,17 +22,19 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 	}
 	
 	@Override
-	public void Export(String filePath) throws JSONException {
+	public void Export(String filePath) {
 		JSONObject my_obj = new JSONObject();
 
-		ExportChildrenIterator(my_obj, FamilyTree);
+		try {
+			ExportChildrenIterator(my_obj, FamilyTree);
+		} catch (JSONException e1) { e1.printStackTrace(); }
 		
 		try (FileWriter file = new FileWriter(filePath)) {
 			file.write(my_obj.toString());
         } catch (IOException e) { }
 	}
 	
-	private JSONObject ExportChildrenIterator(JSONObject my_obj, FamilyMember currentMember) throws JSONException {
+	private void ExportChildrenIterator(JSONObject my_obj, FamilyMember currentMember) throws JSONException {
 		String key = currentMember.Name;;
 		ArrayList<FamilyMember> children = currentMember.getChildren();
 		
@@ -48,12 +50,10 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 				ExportChildrenIterator(childrenObj, children.get(i));
 			}	
 		}
-		
-		return my_obj;
 	}
 	
 	@Override
-	public FamilyMember Import(String filePath) throws JSONException, FileNotFoundException, IOException, ParseException {
+	public FamilyMember Import(String filePath) {
 		FamilyTree = null;
 		
 		JSONParser parser = new JSONParser();
