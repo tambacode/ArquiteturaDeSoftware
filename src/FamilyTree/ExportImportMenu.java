@@ -33,8 +33,8 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("4 - TOML");
 		FTUtil.Print("5 - Retornar");
 		
-		//SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
-		SelectFileTypeMenuOption(false, 1);
+		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
+		//SelectFileTypeMenuOption(false, 1);
 	}
 	
 	private void SelectFileTypeMenuOption(Boolean export, Integer value)
