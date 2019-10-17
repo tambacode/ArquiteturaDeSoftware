@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.yaml.snakeyaml.Yaml;
-
 import com.moandjiezana.toml.Toml;
 import com.moandjiezana.toml.TomlWriter;
+
 
 public class FamilyTreeToml implements FamilyTreeAdapter {
 	private FamilyMember FamilyTree;
@@ -26,19 +25,19 @@ public class FamilyTreeToml implements FamilyTreeAdapter {
 
 	@Override
 	public FamilyMember Import(String filePath) {
+		//  /Users/jbalves/Documents/arvore/arvore.toml
 		FamilyTree = null;
 		Toml toml = new Toml();
-		//Toml toml = new Toml().read(getTomlFile());
 		
 		try (InputStream inputStream = new FileInputStream(filePath);) {
-			Map<String, Object> myObj = (Map<String, Object>) toml.read(inputStream);
+			//System.out.println("try ");
+			Map<String, Object> myObj = toml.read(inputStream).toMap();
+			
 			FamilyTree = ImportChildrenIterator(myObj, FamilyTree);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		catch (FileNotFoundException e) { e.printStackTrace(); }
-		catch (IOException e1) { e1.printStackTrace(); }
-		
-		//FTUtil.Print("TOML Import called with sucess");
 		return FamilyTree;
 	}
 	
