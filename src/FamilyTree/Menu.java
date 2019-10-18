@@ -23,7 +23,7 @@ public class Menu extends BaseMenu {
 		FTUtil.Print("2 - Adicionar um membro da familia.");
 		FTUtil.Print("3 - Adicionar um membro da familia, como filho de outro.");
 		FTUtil.Print("4 - Remover um membro da familia.");
-		FTUtil.Print("5 - Importar/Exportar familía.");
+		FTUtil.Print("5 - Importar/Exportar familia.");
 		FTUtil.Print("8 - Apagar a familia atual, e iniciar uma nova.");
 		FTUtil.Print("9 - Para sair");
 		
@@ -37,7 +37,7 @@ public class Menu extends BaseMenu {
 			FTUtil.Print("Familia apagada com sucesso!");
 		}
 		
-		String familyName = FTUtil.RequestString("Digite o nome da árvore genealógica: ");
+		String familyName = FTUtil.RequestString("Digite o nome da arvore genealogica: ");
 		//String familyName = "Johnson's";
 		SetFamily(new Family(familyName));
 		
