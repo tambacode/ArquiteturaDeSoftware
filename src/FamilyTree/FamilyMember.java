@@ -19,6 +19,10 @@ public abstract class FamilyMember {
 		return this.Gender;
 	}
 	
+	public void setName(String name) {
+		this.Name = name;
+	}
+	
 	public ArrayList<FamilyMember> getChildren() {
 		return Children;
 	}	 

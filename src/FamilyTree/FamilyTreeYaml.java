@@ -29,19 +29,17 @@ public class FamilyTreeYaml implements FamilyTreeAdapter {
 	}
 	
 	@Override
+	public String GetFileExtension() {
+		return ".yaml";
+	}
+	
+	@Override
 	public FamilyMember Import(String filePath) {
 		FamilyTree = null;
 		Yaml yaml = new Yaml();
 		
 		try (InputStream inputStream = new FileInputStream(filePath);) {
 			Map<String, Object> myObj = yaml.load(inputStream);
-			
-			/*
-			for (Map.Entry<String, Object> entry : myObj.entrySet())  
-			{
-				PrintEntry(entry);
-			}
-			*/
 
 			FamilyTree = ImportChildrenIterator(myObj, FamilyTree);
 		}
@@ -125,7 +123,6 @@ public class FamilyTreeYaml implements FamilyTreeAdapter {
 	@Override
 	public void Export(String filePath) {
 		MemberIndex = 0;
-		FTUtil.Print("YAML Export called with sucess");
 		
 		Yaml yaml = new Yaml();
 	    StringWriter writer = new StringWriter();

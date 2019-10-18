@@ -18,7 +18,7 @@ public class BaseMenu {
 	protected void WrongOption()
 	{
 		FTUtil.PrintEmptyText();
-		FTUtil.Print("Opção incorreta, tente novamente!");	
+		FTUtil.Print("Opcao incorreta, tente novamente!");	
 	}
 	
 	protected FamilyMember GetFamily() {

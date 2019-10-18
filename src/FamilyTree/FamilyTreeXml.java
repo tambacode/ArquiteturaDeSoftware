@@ -28,6 +28,11 @@ public class FamilyTreeXml implements FamilyTreeAdapter {
 	}
 	
 	@Override
+	public String GetFileExtension() {
+		return ".xml";
+	}
+	
+	@Override
 	public void Export(String filePath) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

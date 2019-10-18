@@ -8,13 +8,13 @@ public class ExportImportMenu extends BaseMenu {
 	@Override
 	public void DisplayMenu() {
 		FTUtil.PrintEmptyText();
-		FTUtil.Print("Escolha uma opção:");
+		FTUtil.Print("Escolha uma opcao:");
 		FTUtil.Print("1 - Importar familia.");
 		FTUtil.Print("2 - Exportar familia.");
 		FTUtil.Print("3 - Retornar.");
 		
-		SelectMenuOption(FTUtil.RequestIntWithLimit(("Escolha uma opção: "), 1, 3));
-		//SelectMenuOption(2);
+		SelectMenuOption(FTUtil.RequestIntWithLimit(("Escolha uma opcao: "), 1, 3));
+		//SelectMenuOption(1);
 	}
 	
 	private void SelectMenuOption(Integer value)
@@ -33,8 +33,8 @@ public class ExportImportMenu extends BaseMenu {
 		FTUtil.Print("4 - TOML");
 		FTUtil.Print("5 - Retornar");
 		
-		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opção: ", 1, 5));
-		//SelectFileTypeMenuOption(false, 1);
+		SelectFileTypeMenuOption(export, FTUtil.RequestIntWithLimit("Digite uma opcao: ", 1, 5));
+		//SelectFileTypeMenuOption(export, 4);
 	}
 	
 	private void SelectFileTypeMenuOption(Boolean export, Integer value)
@@ -65,8 +65,9 @@ public class ExportImportMenu extends BaseMenu {
 	private void DisplayFilePathMenu(Boolean export, FamilyTreeAdapter familyAdapter) {
 		FTUtil.PrintEmptyText();
 		try {
-			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\arquivo.(json|xml|yaml|toml)'): ");
-			//String file = "C:\\wamp64\\www\\ArvoreGenealogica\\src\\XmlPoc\\file.json";
+			String file = FTUtil.RequestString("Digite o caminho para o arquivo (Ex: 'C:\\PastaPreferida\\nomeDoArquivo'): ");
+			file = file + familyAdapter.GetFileExtension();
+			//String file = "C:\\Nano\\customer.toml";
 
 			if (export) {
 				familyAdapter.Export(file);
@@ -77,7 +78,7 @@ public class ExportImportMenu extends BaseMenu {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			FTUtil.Print("Não foi possível executar a ação. Verifique o caminho do arquivo.");
+			FTUtil.Print("Nao foi possivel executar a acao. Verifique o caminho do arquivo.");
 			DisplayFilePathMenu(export, familyAdapter);
 		}
 	}

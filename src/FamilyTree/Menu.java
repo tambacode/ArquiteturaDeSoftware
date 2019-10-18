@@ -27,7 +27,7 @@ public class Menu extends BaseMenu {
 		FTUtil.Print("8 - Apagar a familia atual, e iniciar uma nova.");
 		FTUtil.Print("9 - Para sair");
 		
-		SelectMainMenuOption(FTUtil.RequestInt("Escolha uma opção digitando um número: "));
+		SelectMainMenuOption(FTUtil.RequestInt("Escolha uma opcao digitando um numero: "));
 	}
 	
 	public void InitFamily() {

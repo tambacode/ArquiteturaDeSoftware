@@ -19,6 +19,7 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 	private FamilyMember FamilyTree;
 	private int MemberIndex = 0;
 	
+	
 	public FamilyTreeJson(FamilyMember familyMember) {
 		this.FamilyTree = familyMember;
 	}
@@ -153,5 +154,10 @@ public class FamilyTreeJson implements FamilyTreeAdapter {
 		}
 		
 		return new Woman(name);		
+	}
+
+	@Override
+	public String GetFileExtension() {
+		return ".json";
 	}
 }
