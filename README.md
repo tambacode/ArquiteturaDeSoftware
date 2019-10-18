@@ -25,3 +25,4 @@ Equipe
 * Jeferson Barros
 * Pablo Amaral
 * Rafael Postal
+* Silvandro Pedrozo
